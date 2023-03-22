@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test/model/tourism_place.dart';
+import 'package:test/model/western_band.dart';
 import 'package:test/pages/m3/DetailScreen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -10,34 +10,35 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Indonesian Heritage',
+          'Western Band',
         )
       ),
       body: ListView.builder(
+        scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
-          final TourismPlace place = tourismPlaceLists[index];
+          final Band band = bandList[index];
           return InkWell(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return DetailScreen(place: place);
+                  return DetailScreen(band: band);
                 }));
               },
-              child: listItem(place)
+              child: listItem(band)
           );
         },
-        itemCount: tourismPlaceLists.length,
+        itemCount: bandList.length,
       )
     );
   }
 
-  Widget listItem(TourismPlace place) {
+  Widget listItem(Band band) {
     return Card(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget> [
           Expanded(
             flex: 1,
-            child: Image.asset(place.imageAsset),
+            child: Image.asset(band.imageAsset),
           ),
           Expanded(
             flex: 2,
@@ -48,11 +49,12 @@ class MainScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget> [
                   Text(
-                    place.name,
-                    style: const TextStyle(fontSize: 16.0),
+                    band.name,
+                    style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(height: 10),
-                  Text(place.location)
+                  Text(band.genres, style: const TextStyle(fontSize: 12.0)),
+                  Text(band.country, style: const TextStyle(fontSize: 12.0)),
                 ],
               )
             ),

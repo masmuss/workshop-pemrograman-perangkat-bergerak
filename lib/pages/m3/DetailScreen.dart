@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:test/model/tourism_place.dart';
+import 'package:test/model/western_band.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key, required this.place}) : super(key: key);
+  const DetailScreen({Key? key, required this.band}) : super(key: key);
 
-  final TourismPlace place;
+  final Band band;
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +13,11 @@ class DetailScreen extends StatelessWidget {
             child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Image.asset(place.imageAsset),
+        Image.asset(band.imageAsset),
         Container(
             margin: const EdgeInsets.only(top: 16.0),
             child: Text(
-              place.name,
+              band.name,
               textAlign: TextAlign.center,
               style: const TextStyle(
                   fontFamily: 'Lobster',
@@ -25,26 +25,29 @@ class DetailScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             )),
         Container(
+          margin: const EdgeInsets.only(top: 16.0),
+          child: Text(
+            band.genres,
+            textAlign: TextAlign.center,
+          )
+        ),
+        Container(
             margin: const EdgeInsets.symmetric(vertical: 16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    const Icon(Icons.calendar_today),
-                    Text(place.openOn)
+                    const Icon(Icons.date_range),
+                    Text(band.date)
                   ],
                 ),
                 Column(
                   children: <Widget>[
-                    const Icon(Icons.access_time_outlined),
-                    Text(place.openAt)
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    const Icon(Icons.attach_money),
-                    Text(place.price)
+                    const Icon(Icons.place),
+                    Text(
+                      band.country,
+                    ),
                   ],
                 ),
               ],
@@ -52,7 +55,7 @@ class DetailScreen extends StatelessWidget {
         Container(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              place.detail,
+              band.detail,
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 16.0, fontFamily: 'Oxygen'),
             )),
@@ -61,14 +64,30 @@ class DetailScreen extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              for (var i = 0; i < place.gallery.length; i++)
-                Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: ClipRRect(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(20.0)),
-                      child: Image.asset(place.gallery[i]),
-                    )),
+              for (var i = 0; i < band.albums.length; i++)
+                Container(
+                  width: 110,
+                  child: Column(
+                      children: <Widget>[
+                        Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: ClipRRect(
+                              borderRadius:
+                              const BorderRadius.all(Radius.circular(20.0)),
+                              child: Image.asset(band.albums[i].imageAsset, width: 100, height: 100, fit: BoxFit.cover,),
+                            )
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+                          child: Text(band.albums[i].name, textAlign: TextAlign.center, ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4.0, right: 4.0),
+                          child: Text(band.albums[i].year),
+                        ),
+                      ],
+                    ),
+                  ),
             ],
           ),
         )
