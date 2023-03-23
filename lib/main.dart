@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test/pages/m2/Home2.dart';
 import 'package:test/pages/m3/Home3.dart';
+import 'package:test/pages/m4/Home4.dart';
 
 void main() {
   runApp(const MyApp());
@@ -67,6 +68,33 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 },
                 child: const Text('Minggu 3'),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(10),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Home3(),
+                    ),
+                  );
+                },
+                child: const Text('Minggu 3'),
+              ),
+            ),Container(
+              margin: const EdgeInsets.all(10),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Home4(),
+                    ),
+                  );
+                },
+                child: const Text('Minggu 4'),
               ),
             ),
           ],
