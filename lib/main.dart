@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:test/pages/m2/Home2.dart';
 import 'package:test/pages/m3/Home3.dart';
 import 'package:test/pages/m4/Home4.dart';
+import 'package:test/pages/m5/home.dart';
+import 'package:test/provider/done_listening.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +15,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
+    return ChangeNotifierProvider(
+      create: (context) => DoneListeningProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.indigo,
+        ),
+        home: MyHomePage(title: 'Flutter Demo Home Page'),
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -83,7 +89,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: const Text('Minggu 3'),
               ),
-            ),Container(
+            ),
+            Container(
               margin: const EdgeInsets.all(10),
               child: ElevatedButton(
                 onPressed: () {
@@ -95,6 +102,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 },
                 child: const Text('Minggu 4'),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(10),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyAppArticle(),
+                    ),
+                  );
+                },
+                child: const Text('Minggu 5'),
               ),
             ),
           ],

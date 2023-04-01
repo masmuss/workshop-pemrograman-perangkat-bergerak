@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test/pages/m4/MainScreen.dart';
+import 'package:test/pages/m4/percobaan2/MainScreen.dart';
+import 'package:test/pages/m4/tugas/MainScreen.dart';
 
 class Home4 extends StatefulWidget{
   const Home4({Key? key}) : super(key: key);
@@ -32,6 +34,33 @@ class _HomeState extends State<Home4> {
                     );
                   },
                   child: const Text('Percobaan 1'),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(10),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainScreen2(),
+                      ),
+                    );
+                  },
+                  child: const Text('Percobaan 2'),
+                ),
+              ),Container(
+                margin: const EdgeInsets.all(10),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MainScreen3(),
+                      ),
+                    );
+                  },
+                  child: const Text('Tugas'),
                 ),
               ),
             ],
